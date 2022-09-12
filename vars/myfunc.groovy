@@ -1,4 +1,5 @@
 import hudson.util.Secret
+import groovy.json.JsonSlurper;
 
 def call(String token, String addr) {
     def cmd = "curl --silent --header \"X-Vault-Token: ${token}\" -H \"X-Vault-Wrap-Ttl: 300s\" --request POST \"${addr}/v1/auth/pipeline/role/pipeline-role/secret-id\""
