@@ -8,6 +8,10 @@ def call(String token, String addr) {
     proc.consumeProcessOutput(sout, serr)
     proc.waitForOrKill(1000)
     println sout*/
-    println new ProcessBuilder( 'sh', '-c', cmd).redirectErrorStream(true).start().text
+    def resp_json = new ProcessBuilder( 'sh', '-c', cmd).redirectErrorStream(true).start().text
+    
+    // Parse json and obtain token
     def jsonSlurper = new JsonSlurper();
+    def token = jsonSlurper.parseText(resp_json).wrap_info.token;
+    println token
 }
