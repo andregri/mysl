@@ -13,5 +13,5 @@ def call(String token, String addr) {
     // Parse json and obtain token
     def jsonSlurper = new JsonSlurper();
     def pipeline_vault_token = jsonSlurper.parseText(resp_json).wrap_info.token;
-    println pipeline_vault_token
+    return Secret.fromString​(pipeline_vault_token)
 }
