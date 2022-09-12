@@ -3,10 +3,11 @@ import groovy.json.JsonSlurper;
 
 def call(String token, String addr) {
     def cmd = "curl --silent --header \"X-Vault-Token: ${token}\" -H \"X-Vault-Wrap-Ttl: 300s\" --request POST \"${addr}/v1/auth/pipeline/role/pipeline-role/secret-id\""
-    def sout = new StringBuffer(), serr = new StringBuffer()
+    /*def sout = new StringBuffer(), serr = new StringBuffer()
     def proc = cmd.execute()
     proc.consumeProcessOutput(sout, serr)
     proc.waitForOrKill(1000)
-    println sout
+    println sout*/
+    println new ProcessBuilder( 'sh', '-c', cmd).redirectErrorStream(true).start().text
     def jsonSlurper = new JsonSlurper();
 }
